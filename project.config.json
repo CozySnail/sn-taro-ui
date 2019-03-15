@@ -1,13 +1,15 @@
 {
-  "miniprogramRoot": "./dist",
-  "projectname": "sn-taro-ui",
-  "description": "基于 Taro 开发的第三方多端 UI 库",
-  "appid": "touristappid",
-  "setting": {
-    "urlCheck": true,
-    "es6": false,
-    "postcss": false,
-    "minified": false
-  },
-  "compileType": "miniprogram"
+	"miniprogramRoot": "dist/",
+	"projectname": "sn-taro-ui",
+	"description": "Taro 第三方 UI 库示范用例",
+	"appid": "touristappid",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": false,
+		"minified": false,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"condition": {}
 }

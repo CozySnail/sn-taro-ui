@@ -3,4 +3,8 @@ dist/
 .rn_temp/
 node_modules/
 .DS_Store
+coverage/
 .idea
+*.css
+*.css.map
+.sass-cache
