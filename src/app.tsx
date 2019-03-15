@@ -1,7 +1,9 @@
 import Taro, { Component, Config } from '@tarojs/taro'
+import 'taro-ui/dist/style/index.scss'; // 全局引入一次即可
+import './app.scss'
+import './asset/fonts/Awesome/less/font-awesome.less';
 import Index from './pages/index'
 
-import './app.scss'
 
 class App extends Component {
 
