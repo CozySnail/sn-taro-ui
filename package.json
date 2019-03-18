@@ -1,7 +1,7 @@
 {
   "name": "sn-taro-ui",
-  "version": "0.1.5",
-  "description": "Taro 第三方 UI 库示范用例",
+  "version": "0.1.7",
+  "description": "Taro 第三方 UI 库自定义封装一些常用的组件及 Taro 工具类",
   "main": "dist/index.js",
   "main:h5": "dist/h5/index.js",
   "types": "./@types/index.d.ts",
@@ -34,7 +34,10 @@
     "url": "git+https://github.com/CozySnail/sn-taro-ui.git"
   },
   "keywords": [
-    "utils"
+    "taro utils",
+    "taroUtils",
+    "taro-utils",
+    "taro"
   ],
   "author": "CozySnail <517469812@qq.com>",
   "license": "MIT",

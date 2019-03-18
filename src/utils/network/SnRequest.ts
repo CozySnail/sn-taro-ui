@@ -4,13 +4,13 @@ import Taro from '@tarojs/taro';
  * Taro Request 工具类
  * @Author snail
  */
-function postForm(params: JSON): void {
+function postForm(): void {
   const contentType = 'application/json';
   const header = {'content-type': contentType};
   console.log('ENV_TYPE.WEB : ', Taro.ENV_TYPE.WEB);
   Taro.request({
     url: 'https://payuat.p6air.com/JZPay/api/system/get-session-id',
-    data: params,
+    data: {},
     method: 'POST',
     header,
     success(res) {
