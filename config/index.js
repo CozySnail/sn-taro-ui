@@ -1,4 +1,3 @@
-/* eslint-disable import/no-commonjs */
 const path = require('path');
 
 const config = {
@@ -83,13 +82,13 @@ if (process.env.TARO_BUILD_TYPE === 'ui') {
         '@tarojs/taro-h5': 'commonjs2 @tarojs/taro-h5',
         'weui': 'commonjs2 weui'
       }
-    })
-  }
+    });
+  };
 }
 
 module.exports = function (merge) {
   if (process.env.NODE_ENV === 'development') {
-    return merge({}, config, require('./dev'))
+    return merge({}, config, require('./dev'));
   }
-  return merge({}, config, require('./prod'))
+  return merge({}, config, require('./prod'));
 };

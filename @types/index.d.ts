@@ -1,2 +1,2 @@
-export {default as Timer} from './timer'
-export {default as SnRequest} from './SnRequest'
+export {default as Timer} from './timer';
+export {default as SnRequest} from './SnRequest';

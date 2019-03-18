@@ -7,6 +7,6 @@ export interface TimerProps {
   onTick?(): void
 }
 
-declare const Timer: ComponentClass<TimerProps>
+declare const Timer: ComponentClass<TimerProps>;
 
 export default Timer
