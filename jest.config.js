@@ -22,4 +22,4 @@ module.exports = {
     'weui': '<rootDir>/__mock__/styleMock.js',
     '\\.(css|less|sass|scss)$': '<rootDir>/__mock__/styleMock.js'
   }
-}
+};
