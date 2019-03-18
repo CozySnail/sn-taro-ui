@@ -1,12 +1,10 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
-import Taro, {Component} from '@tarojs/taro'
-import Nerv, {render} from 'nervjs'
+/* eslint-env jest */
+import Taro, {Component, render} from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import sinon from 'sinon'
 
 import Timer from '../../../.temp/components/timer/timer'
-/* eslint-disable no-undef */
+
 describe('Timer test', () => {
   let scratch;
 
@@ -25,11 +23,12 @@ describe('Timer test', () => {
         }
       }
 
-      tickHandler () {
-
+      tickHandler (time) {
+        console.log('tickHandler : ', time);
       }
 
       timeupHandler () {
+        console.log('timeupHandler : ', this.state.startTime, this.state.endTime);
       }
 
       render () {
