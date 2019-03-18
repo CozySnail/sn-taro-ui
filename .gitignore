@@ -8,3 +8,4 @@ coverage/
 *.css
 *.css.map
 .sass-cache
+lib
