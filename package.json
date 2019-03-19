@@ -48,7 +48,8 @@
   "homepage": "https://github.com/CozySnail/sn-taro-ui#readme",
   "dependencies": {
     "weixin-js-sdk": "^1.4.0-test",
-    "crypto-js": "^3.1.9-1"
+    "crypto-js": "^3.1.9-1",
+    "sn-js-utils": "^0.1.5-rc.9"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -68,7 +69,6 @@
     "@tarojs/taro-weapp": "^1.2.20",
     "@tarojs/webpack-runner": "^1.2.20",
     "taro-ui": "^2.0.2",
-    "sn-js-utils": "^0.1.5-rc.9",
     "@types/react": "^16.4.6",
     "@types/sinon": "^5.0.5",
     "@types/webpack-env": "^1.13.6",
