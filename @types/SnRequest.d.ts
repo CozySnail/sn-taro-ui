@@ -1,5 +1,5 @@
 /**
- * Taro Request 工具类
+ * Request 工具类
  * @Author snail
  */
 /**

@@ -1,26 +1,36 @@
+/**
+ * Request 工具类
+ * @Author snail
+ */
 import Taro from '@tarojs/taro';
 
 /**
- * Taro Request 工具类
- * @Author snail
+ * @Description: POST 请求, 请求方式为表单提交方式
+ * @author snail
+ *
+ * @date 2019-03-18
+ * @param url {string}          接口地址
+ * @param data {JSON}           参数
+ * @param success {function}    成功回调
+ * @param failure {function}    失败回调
  */
-function postForm(): void {
-  const contentType = 'application/json';
+function postForm(url: string, data: JSON, success: Function, failure: Function): void {
+  const contentType = 'application/x-www-form-urlencoded';
   const header = {'content-type': contentType};
-  console.log('ENV_TYPE.WEB : ', Taro.ENV_TYPE.WEB);
   Taro.request({
-    url: 'https://payuat.p6air.com/JZPay/api/system/get-session-id',
-    data: {},
+    url,
+    data,
     method: 'POST',
     header,
-    success(res) {
+    success: (res) => {
       console.log('res : ', res);
-      return res;
+      success && success(res);
     },
-    fail(e) {
+    fail: (e) => {
       console.log('api', '请求接口出现问题', e);
+      failure && failure(e);
     },
-    complete() {
+    complete: () => {
       console.info('加载完成');
     },
   }).then(res => console.log(res.data));
