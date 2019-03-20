@@ -5,7 +5,8 @@ import './index.scss';
 import Timer from '../../components/timer/timer';
 // import SnCheckEnv from '../../utils/SnCheckEnv';
 // import SnLogUtil from '../../utils/SnLogUtil';
-import SnStorage from '../../utils/SnStorage';
+// import SnStorage from '../../utils/SnStorage';
+import SignUtil from '../../utils/network/SignUtil';
 
 export default class Index extends Component {
 
@@ -46,6 +47,10 @@ export default class Index extends Component {
     SnLogUtil.logError('name 1 ', 'action 2', {name:'张三', age: 12, gender: '男'});*/
 
     // 测试 SnStorage 工具类
+
+    // 测试 SignUtil 工具类
+    console.log('sign : ', SignUtil.genEncryptedSecret( 'JZPAYWX22846','MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDz1TEIAjzVD0kkbhqjIvTteHgT59sGxcQqiLmh1B40X8LcQQNlFfG1laC2NxSXWADiT8RGaD1Y+woVLgRsP0qDv7pBRzt5fUA2+MRnq30WzU6n/xmEAeP/ZcLVtQQZVP/KVMVhE/McDve9ITI+Eojuh3csB1ILvUt0wJ3RYJEfUwIDAQAB'));
+    console.log('sign : ', SignUtil.decryptForEncryptedSecret('JZPAYWX22846', 'U2FsdGVkX19DRCi80liAzvA4eN6aAZM6JW+BPPDDlJSLuLBnQ3w8c5M689Hnz54KHo8OypGdFZ8N69qX7zrtHPJvPHFW7zPej6NnmVne3RPvivXPaQcC4M4VVKir/QXlcP7d1CBcChnsgqq2UsOAdVtvKvlKLQfoMX2Y3XRfmceBn2u8Graj7Do7XMxC+JCJryiRogOjRqOpKqYGqu0lQXVUHZBxyyWQFIcoS96xDd6bpOKTFOb7MGUZER6CNn3e6Tiz2dJQoSxwz2uOQ5Zg249JwJCq0KBFg1Lan55JpJNnzC2Ltz9tHoDRASY+YAvG'));
 
   }
 
