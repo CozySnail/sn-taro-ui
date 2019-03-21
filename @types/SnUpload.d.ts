@@ -35,6 +35,8 @@ declare function uploadH5(url, file, uploadedDir: string, loading: boolean, load
  *    console.log('已经上传的数据长度', res.totalBytesSent);
  *    console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend);
  * });
+ *
+ * uploadTask.abort() // 取消上传任务
  */
 declare function uploadFile(url, filePath: string, uploadedDir: string, loading: boolean, loadingText: string, success, failure): any;
 

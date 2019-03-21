@@ -55,6 +55,8 @@ function uploadH5(url, file, uploadedDir: string = 'uploadFiles', loading: boole
  *    console.log('已经上传的数据长度', res.totalBytesSent);
  *    console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend);
  * });
+ *
+ * uploadTask.abort() // 取消上传任务
  */
 function uploadFile(url, filePath: string, uploadedDir: string = 'uploadFiles', loading: boolean = false, loadingText: string = '正在上传', success, failure): any {
   const options = setUploadRequestOption(url, filePath, uploadedDir, loading, success, failure);
