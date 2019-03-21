@@ -109,4 +109,5 @@ function isFunction(fn) {
 export default {
   dealWithRequestSuccess,
   dealWithRequestError,
+  sendCallback,
 };

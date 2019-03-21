@@ -11,3 +11,5 @@ export {default as SnStorage} from './utils/SnStorage';
 export {default as SnLogUtil} from './utils/SnLogUtil';
 export {default as SignUtil} from './utils/network/SignUtil';
 export {default as SnAlipay} from './utils/pay/alipay/SnAlipay';
+export {default as SnWeChatUtil} from './utils/SnWeChatUtil';
+
