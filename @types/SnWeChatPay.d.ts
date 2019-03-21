@@ -9,7 +9,7 @@
  */
 declare function applyPay(): void;
 
-declare const SnWechatPay: {
+declare const SnWeChatPay: {
   applyPay: typeof applyPay;
 };
-export default SnWechatPay;
+export default SnWeChatPay;
