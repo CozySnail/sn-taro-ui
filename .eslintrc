@@ -3,7 +3,9 @@
   "rules": {
     "no-unused-vars": ["error", { "varsIgnorePattern": "Taro" }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx", ".ts"] }],
-    "import/no-commonjs": 0
+    "import/no-commonjs": 0,
+    "react/react-in-jsx-scope": 0,
+    "import/no-named-as-default-member": 0
   },
   "parser": "babel-eslint"
 }

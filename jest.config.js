@@ -10,8 +10,8 @@ module.exports = {
   testMatch: [
     '<rootDir>/src/components/**/*.test.js',
     '<rootDir>/src/components/!**/test.js',
-    '<rootDir>/src/utils/**/test.js',
-    '<rootDir>/src/utils/**/*.test.js',
+    /*'<rootDir>/src/utils/!**!/test.js',
+    '<rootDir>/src/utils/!**!/!*.test.js',*/
   ],
   transform: {
     '^.+\\.js?$': 'babel-jest'
