@@ -7,13 +7,23 @@ import {StringUtil} from 'sn-js-utils';
 import wx from 'weixin-js-sdk';
 
 /**
- * @Description: 判断是否为 Web 或 H5 环境
+ * @Description: 判断是否为 Web 环境
  * @author snail
  * @date 2019-03-19
  * @return {boolean} 返回判断结果 是/否
  */
 function isWeb(): boolean {
   return StringUtil.equals(Taro.getEnv(), Taro.ENV_TYPE.WEB);
+}
+
+/**
+ * @Description: 判断是否为 H5 环境
+ * @author snail
+ * @date 2019-03-19
+ * @return {boolean} 返回判断结果 是/否
+ */
+function isH5(): boolean {
+  return isWeb();
 }
 
 /**
@@ -102,7 +112,7 @@ function isWeChatMiniProgram(): boolean {
  * @author snail
  * @date 2019-03-19
  * @return {boolean} 返回判断结果 是/否
-*/
+ */
 function isPC(): boolean {
   //平台、设备和操作系统
   let system = {
@@ -118,8 +128,29 @@ function isPC(): boolean {
   return system.win || system.mac || system.xll;
 }
 
+/**
+ * @Description: 判断是否为开发环境
+ * @author snail
+ * @date 2019-03-19
+ * @return {boolean} 返回判断结果 是/否
+ */
+function isDev(): boolean {
+  return process.env.NODE_ENV === 'development';
+}
+
+/**
+ * @Description: 判断是否为生产环境
+ * @author snail
+ * @date 2019-03-19
+ * @return {boolean} 返回判断结果 是/否
+ */
+function isPro(): boolean {
+  return process.env.NODE_ENV === 'production';
+}
+
 export default {
   isWeb,
+  isH5,
   isWeApp,
   isRN,
   isSwan,
@@ -128,4 +159,6 @@ export default {
   isWeChatPublic,
   isWeChatMiniProgram,
   isPC,
+  isDev,
+  isPro,
 };
