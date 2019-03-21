@@ -1,4 +1,8 @@
+// 组件
 export {default as Timer} from './components/timer/timer';
+
+// 工具类
+export {default as SnBaiDuTj} from './utils/SnBaiDuTJ';
 export {default as SnRequest} from './utils/network/SnRequest';
 export {default as SnUpload} from './utils/network/SnUpload';
 export {default as SnDownload} from './utils/network/SnDownload';
