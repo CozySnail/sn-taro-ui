@@ -9,6 +9,7 @@ import storage from '../SnStorage';
 import result from './Result';
 
 const token = storage.get('token');
+const NEED_SIGN_FLAG = '/author';
 const bussnessSessionId = storage.get('bussnessSessionId');
 const payCenterSessionId = storage.get('payCenterSessionId');
 
@@ -79,7 +80,7 @@ function generateFormParam(data) {
  */
 function postJson(url: string, data: any, platformType: string = 'bussiness', needSign: boolean = false, loading: boolean = false, loadingText: string = '正在加载', success: Function, failure: Function): void {
   const contentType = 'application/json';
-  if (needSign) {
+  if (needSign || StringUtil.contains(url, NEED_SIGN_FLAG)) {
     data = SignUtil.encode(data.parentId, data.secret, data);
   }
   let header = setHeader(contentType, platformType);
