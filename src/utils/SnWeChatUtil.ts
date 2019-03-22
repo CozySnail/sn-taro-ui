@@ -19,7 +19,7 @@ const HIDE_MENU = ['menuItem:share:qq', 'menuItem:share:QZone', 'menuItem:share:
  * @Description: 微信配置
  * @author snail
  * @date 2019-02-26
- * @param url {string} 需要配置的页面地址
+ * @param url {string} 需要配置的页面地址, 一般 H5 获取此地址需要使用 location.href.split('#')[0]
  * @param jsApiList {Array} 需要配置的页面需要使用的api接口集合
  */
 function config(url: string, jsApiList: Array<string> = DEFAULT_CONFIG_API): void {
