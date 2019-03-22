@@ -21,5 +21,12 @@ module.exports = {
       }
     }
   },
-  h5: {}
+  h5: {
+    devServer:{
+      port: '10086',
+      open: false,
+      https: false,
+      disableHostCheck: true
+    }
+  }
 };

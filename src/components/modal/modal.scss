@@ -1,0 +1,122 @@
+.taro_router {
+  width: 100%;
+  height: 100%;
+}
+
+.taro_page {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.common-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 200;
+  flex: 1;
+
+  .main {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    max-width: 80%;
+    max-height: 80%;
+    min-width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .at-row {
+      position: static;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      background-color: #6DAAFA;
+      border-bottom: 1px solid #8e8c8c36;
+      min-height: 50px;
+
+      .title-row {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        padding: 10px;
+      }
+
+      .at-col {
+        display: flex;
+        align-items: center;
+      }
+
+      .title {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        color: #FFFFFF;
+        font-size: 30px;
+        font-weight: 400;
+      }
+    }
+
+    .sub-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      min-height: 80px;
+    }
+
+    .content {
+      display: flex;
+      flex: 1;
+      text-align: left;
+      font-size: 30px;
+      margin: 20px;
+      max-height: 80%;
+      min-height: 20%;
+    }
+
+    .at-button--full {
+      width: 100%;
+      height: 70px;
+      font-size: 30px;
+      font-weight: 400;
+      border: none;
+    }
+
+    .btn-view {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      .cancel-btn {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f2f2;
+        border-bottom-left-radius: 20px;
+        margin-right: 1px;
+      }
+
+      .confirm-btn {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        border-bottom-right-radius: 20px;
+      }
+
+      .no-cancel-confirm-btn {
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+    }
+  }
+}

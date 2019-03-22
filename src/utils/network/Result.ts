@@ -110,4 +110,5 @@ export default {
   dealWithRequestSuccess,
   dealWithRequestError,
   sendCallback,
+  isFunction,
 };
