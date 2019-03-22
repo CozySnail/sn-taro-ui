@@ -8492,10 +8492,10 @@ slice-ansi@1.0.0:
   dependencies:
     is-fullwidth-code-point "^2.0.0"
 
-sn-js-utils@^0.1.5-rc.9:
-  version "0.1.5-rc.9"
-  resolved "https://registry.npmjs.org/sn-js-utils/-/sn-js-utils-0.1.5-rc.9.tgz#6c1e02c46b909fb1a8f7e856d78e5480513a2986"
-  integrity sha512-yJ83X+dRMewYxBKoiISPHxBScHI/ZjBohl+qb7eJyFnbgIINF/JQp6oyNpW6I0IlRgumOzvdawBcYQxB5Vvbiw==
+sn-js-utils@^0.1.5-rc.10:
+  version "0.1.5-rc.10"
+  resolved "https://registry.npmjs.org/sn-js-utils/-/sn-js-utils-0.1.5-rc.10.tgz#1e16ed7e882bc2409670ad54551847b57380770c"
+  integrity sha512-ImtZ1+ifLpE7o7pHJWszYtnTApJjwccifgLMRg+CGG62JpP8s4hGol/TgCDiNUUr/Xvmk2b6RNMh43aOi8aD9A==
   dependencies:
     "@babel/runtime" "^7.1.2"
 

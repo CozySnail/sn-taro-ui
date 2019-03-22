@@ -101,7 +101,7 @@ function hideWeChatMenuItems(menuList?: Array<string>, callback?: Function): voi
  */
 function weChatShareTimeline(title: string = '分享标题', link: string = '分享链接', imgUrl: string = '分享图标', callback?: Function): void {
   let shareFlag = StringUtil.isNotEmpty(CHANNEL) ? 'channel=' + CHANNEL : '';
-  link = link + (StringUtil.contains(link, Number('?')) ? ('&' + shareFlag) : ('?' + shareFlag));
+  link = link + StringUtil.contains(link, '?') ? ('&' + shareFlag) : ('?' + shareFlag);
   let ret = {};
   wx.ready(function () {
     wx.onMenuShareTimeline({
@@ -147,7 +147,7 @@ function weChatShareTimeline(title: string = '分享标题', link: string = '分
  */
 function weChatShareAppMessage(title: string = '分享标题', desc: string = '分享描述', link: string = '分享链接', imgUrl: string = '分享图标', callback?: Function): void {
   let shareFlag = StringUtil.isNotEmpty(CHANNEL) ? 'channel=' + CHANNEL : '';
-  link = link + (StringUtil.contains(link, Number('?')) ? ('&' + shareFlag) : ('?' + shareFlag));
+  link = link + StringUtil.contains(link, '?') ? ('&' + shareFlag) : ('?' + shareFlag);
   let ret = {};
   wx.ready(function () {
     wx.onMenuShareAppMessage({
