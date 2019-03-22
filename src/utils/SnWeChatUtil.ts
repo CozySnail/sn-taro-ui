@@ -2,6 +2,7 @@
  * 微信工具类
  * @Author snail
  */
+import Taro from '@tarojs/taro';
 import {StringUtil} from 'sn-js-utils';
 import wx from 'weixin-js-sdk';
 import SnCheckEnv from './SnCheckEnv';
@@ -182,10 +183,15 @@ function weChatShareAppMessage(title: string = '分享标题', desc: string = '�
   });
 }
 
+function shareForMP() {
+  Taro.showShareMenu({withShareTicket: true}).then();
+  Taro.hideShareMenu({withShareTicket: true}).then();
+}
 export default {
   config,
   share,
   hideWeChatMenuItems,
   weChatShareTimeline,
-  weChatShareAppMessage
+  weChatShareAppMessage,
+  shareForMP
 };

@@ -35,7 +35,7 @@ function applyPayH5(weChatConfigId: string,
                     attach: string = '',
                     successUrl: string,
                     failureUrl: string,
-                    callback: Function) {
+                    callback: Function): void {
   let isWeChat = SnCheckEnv.isWeChatPublic() || SnCheckEnv.isWeApp();
   let successRedirectUrl = encodeURIComponent(successUrl);
   let failureRedirectUrl = encodeURIComponent(failureUrl);
@@ -112,7 +112,15 @@ function applyPayH5(weChatConfigId: string,
  * @param failureUrl {string}    支付失败跳转地址
  * @param callback {function}      回调函数
  */
-function applyPayMP(weChatConfigId: string, productDesc: string, orderNum: string, price: number, notifyUrl: string, attach: string = '', successUrl: string, failureUrl: string, callback: Function) {
+function applyPayMP(weChatConfigId: string,
+                    productDesc: string,
+                    orderNum: string,
+                    price: number,
+                    notifyUrl: string,
+                    attach: string = '',
+                    successUrl: string,
+                    failureUrl: string,
+                    callback: Function): void {
   let isWeChat = SnCheckEnv.isWeChatPublic() || SnCheckEnv.isWeApp();
 
   genApplyPayParams({
@@ -177,7 +185,7 @@ function applyPayMP(weChatConfigId: string, productDesc: string, orderNum: strin
  *  attach {string}        附加数据
  *  callback {function}      回调函数
  */
-function genApplyPayParams(parameters: { weChatConfigId: string, productDesc: string, orderNum: string, price: number, notifyUrl: string, attach: string, success: Function }) {
+function genApplyPayParams(parameters: { weChatConfigId: string, productDesc: string, orderNum: string, price: number, notifyUrl: string, attach: string, success: Function }): void {
   let {weChatConfigId, productDesc, orderNum, price, notifyUrl, attach, success} = parameters;
   let applyPayData = {};
   let isWeChat = SnCheckEnv.isWeChatPublic() || SnCheckEnv.isWeApp();
