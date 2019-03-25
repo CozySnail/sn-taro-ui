@@ -110,8 +110,8 @@ function baseRequest(options, loading, loadingText) {
 }
 
 function request(options) {
-  Taro.addInterceptor(Taro.interceptors.logInterceptor);
-  Taro.addInterceptor(Taro.interceptors.timeoutInterceptor);
+  // Taro.addInterceptor(Taro.interceptors.logInterceptor);
+  // Taro.addInterceptor(Taro.interceptors.timeoutInterceptor);
   Taro.request(options).then(res => console.log(res.data));
 }
 
