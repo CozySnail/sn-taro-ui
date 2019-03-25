@@ -1,6 +1,6 @@
 {
 	"name": "sn-taro-ui",
-	"version": "0.1.8",
+	"version": "0.1.9",
 	"description": "Taro 第三方 UI 库自定义封装一些常用的组件及 Taro 工具类",
 	"main": "dist/index.js",
 	"main:h5": "dist/h5/index.js",

@@ -46,10 +46,6 @@ interface IProps {
 
 // 设置 state 属性
 interface IState {
-  diffTime: number,
-  remainHour: number,
-  remainMin: number,
-  remainSec: number
 }
 
 export default class Modal extends Component<IProps, IState> {

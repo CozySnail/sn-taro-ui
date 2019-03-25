@@ -1,5 +1,6 @@
 // 组件
 export {default as Timer} from './timer';
+export {default as Modal} from './modal';
 
 // 工具类
 export {default as SnBaiDuTj} from './SnBaiDuTJ';
