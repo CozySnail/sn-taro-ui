@@ -8,9 +8,8 @@
   height: 100%;
 }
 
-
-
 .common-modal {
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,33 +22,42 @@
 
   .main {
     background-color: #FFFFFF;
-    border-radius: 20px;
+    border-radius: 10px;
     max-width: 80%;
     max-height: 80%;
-    min-width: 50%;
+    min-width: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
     .at-row {
-      position: static;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
       background-color: #6DAAFA;
       border-bottom: 1px solid #8e8c8c36;
-      min-height: 50px;
+      min-height: 80px;
+      width: 100%;
 
       .title-row {
         display: flex;
         flex-direction: row;
         flex: 1;
         padding: 10px;
+
+        .at-icon {
+          display: flex;
+          align-items: center;
+        }
       }
 
       .at-col {
         display: flex;
         align-items: center;
+        justify-content: center;
       }
 
       .title {
@@ -65,6 +73,7 @@
 
     .sub-title {
       display: flex;
+      width: 100%;
       align-items: center;
       justify-content: center;
       font-size: 30px;
@@ -76,17 +85,14 @@
       flex: 1;
       text-align: left;
       font-size: 30px;
-      margin: 20px;
       max-height: 80%;
       min-height: 20%;
-    }
+      padding: 10px 20px 50px 20px;
 
-    .at-button--full {
-      width: 100%;
-      height: 70px;
-      font-size: 30px;
-      font-weight: 400;
-      border: none;
+      .content-scroll {
+        display: flex;
+        flex: 1;
+      }
     }
 
     .btn-view {
@@ -94,15 +100,17 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
+      min-height: 80px;
+      border-top: 1px solid #8e8c8c36;
 
       .cancel-btn {
         display: flex;
         flex: 1;
         align-items: center;
         justify-content: center;
-        background-color: #f5f2f2;
-        border-bottom-left-radius: 20px;
-        margin-right: 1px;
+        border-radius: 0 0 0 10px;
+        border:0;
+        border-right: 1px solid #8e8c8c36;
       }
 
       .confirm-btn {
@@ -110,13 +118,18 @@
         flex: 1;
         align-items: center;
         justify-content: center;
-        border-bottom-right-radius: 20px;
+        border-radius: 0 0 10px 0;
+        border:0;
       }
+    }
 
-      .no-cancel-confirm-btn {
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-      }
+    .no-cancel-confirm-btn {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0 0 10px 10px;
+      border: 0;
     }
   }
 }

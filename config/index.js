@@ -40,7 +40,9 @@ const config = {
         },
         url: {
           enable: true,
-          limit: 10240
+          config: {
+            limit: 1024000 // 设定转换尺寸上限
+          }
         }
       }
     }

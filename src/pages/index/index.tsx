@@ -51,20 +51,38 @@ export default class Index extends Component {
         {
           this.state.modalShow && (
             <Modal
+              // 图标
               icon='info-circle'
-              iconColor='#cf65ff'
+              iconColor='#8e8c8c36'
+              iconSize={20}
+
+              // 标题
               title='Modal 标题'
-              subTitle='Modal 副标题!'
-              content='Modal 内容区域内容区域'
-              confirmText='确认'
-              cancelText='取消'
-              titleColor='#aaaaaa'
+              titleTextSize={20}
+              titleTextColor='#858585'
               titleBgColor='#ffffff'
-              btnGroupsTopBorderColor='#cecece'
-              cancelBtnColor='red'
-              cancelBtnBgColor='blue'
-              confirmBtnColor='grey'
-              confirmBtnBgColor='green'
+
+              // 副标题
+              subTitle='Modal 副标题!'
+              subTitleTextSize={20}
+              subTitleTextColor='#5c89e4'
+
+              // 内容
+              content='Modal 内容区域内容区域内容区域内容区域内容区域'
+              contentTextSize={20}
+              contentTextColor='#acacac'
+
+              // 确认按钮
+              confirmText='确认'
+              confirmBtnTextColor='#5c89e4'
+              confirmBtnBgColor='#FFFFFF'
+
+              // 取消按钮
+              cancelText='取消'
+              cancelBtnTextColor='#acacac'
+              cancelBtnBgColor='#ffffff'
+
+              // 回调函数
               onConfirm={this.onConfirmModal}
               onCancel={this.onCancelModal}
             />
