@@ -1,5 +1,5 @@
 import Taro, {Component, Config} from '@tarojs/taro';
-import {View} from '@tarojs/components';
+import {Input, Text, View} from '@tarojs/components';
 import './index.scss';
 
 import Modal from '../../components/modal/modal';
@@ -85,7 +85,12 @@ export default class Index extends Component {
               // 回调函数
               onConfirm={this.onConfirmModal}
               onCancel={this.onCancelModal}
-            />
+
+              closeBtn
+            >
+              <Text>内容区域</Text>
+              <Input type='text' placeholder='将会获取焦点' focus />
+            </Modal>
           )
         }
       </View>

@@ -1,9 +1,10 @@
 import Taro, {Component} from '@tarojs/taro';
-import {Button, ScrollView, Text, View} from '@tarojs/components';
+import {Button, Image, ScrollView, Text, View} from '@tarojs/components';
 import {AtIcon} from 'taro-ui';
 
 import './modal.scss';
 import {StringUtil} from 'sn-js-utils';
+import closeIcon from '../../asset/images/close-icon.png';
 
 // 设置组件参数属性
 interface IProps {
@@ -38,6 +39,9 @@ interface IProps {
   cancelBtnTextColor?: string,
   cancelBtnBgColor?: string,
 
+  // 是否显示关闭按钮
+  closeBtn?: boolean
+
   // 回调函数
   onConfirm?(): void,
 
@@ -71,6 +75,7 @@ interface IState {
  * @param cancelText {string} 取消按钮文字, 默认 null 不显示取消按钮
  * @param cancelBtnTextColor {string}  取消按钮文字颜色, 默认 #acacac, 当 cancelText 不为空时有效
  * @param cancelBtnBgColor {string}  取消按钮背景颜色, 默认 #FFFFFF, 当 cancelText 不为空时有效
+ * @param closeBtn {boolean}  是否显示关闭按钮, 默认 false
  *
  * @example
  * <Modal
@@ -108,6 +113,9 @@ interface IState {
  *     // 回调函数
  *     onConfirm={this.onConfirmModal}
  *     onCancel={this.onCancelModal}
+ *
+ *     // 是否显示关闭按钮
+ *     closeBtn
  *     />
  */
 export default class Modal extends Component<IProps, IState> {
@@ -143,13 +151,20 @@ export default class Modal extends Component<IProps, IState> {
     cancelText: '',
     cancelBtnTextColor: '#acacac',
     cancelBtnBgColor: '#FFFFFF',
+
+    // 是否显示关闭按钮
+    closeBtn: false,
   };
 
-  confirm = () => {
+  onConfirm = () => {
     this.props.onConfirm && this.props.onConfirm();
   };
 
-  cancel = () => {
+  onDropClose = () => {
+    (!this.props.closeBtn && this.props.onCancel) && this.props.onCancel();
+  };
+
+  onCancel = () => {
     this.props.onCancel && this.props.onCancel();
   };
 
@@ -157,23 +172,26 @@ export default class Modal extends Component<IProps, IState> {
     let confirmBtnClass = (this.props.cancelText && StringUtil.isNotEmpty(this.props.cancelText)) ? 'confirm-btn' : 'no-cancel-confirm-btn';
     let cancelBtnClass = (this.props.confirmText && StringUtil.isNotEmpty(this.props.confirmText)) ? 'cancel-btn' : 'no-cancel-confirm-btn';
     return (
-      <View className='common-modal' onClick={this.cancel}>
+      <View className='common-modal' onClick={this.onDropClose}>
         <View className='main'>
+          <Image
+            src={closeIcon}
+            className='closeBtn'
+            onClick={this.onCancel}
+          />
           {
             (this.props.title && StringUtil.isNotEmpty(this.props.title)) && (
               <View className='at-row' style={{backgroundColor: this.props.titleBgColor}}>
                 <View className='title-row'>
-                  {
-                    (this.props.icon && StringUtil.isNotEmpty(this.props.icon)) ? (
-                      <AtIcon prefixClass='fa' value={this.props.icon} color={this.props.iconColor}
-                              size={this.props.iconSize} className='at-icon' />
-                    ) : null
-                  }
                   <View className='title'
                         style={{color: this.props.titleTextColor, fontSize: this.props.titleTextSize}}>
-                    {this.props.title}
-                  </View>
-                  <View className='at-col at-col-1 at-col--wrap'>
+                    {
+                      (this.props.icon && StringUtil.isNotEmpty(this.props.icon)) ? (
+                        <AtIcon prefixClass='fa' value={this.props.icon} color={this.props.iconColor}
+                                size={this.props.iconSize} className='at-icon' />
+                      ) : null
+                    }
+                    <Text style={{marginLeft: Taro.pxTransform(10)}}>{this.props.title}</Text>
                   </View>
                 </View>
               </View>
@@ -193,10 +211,12 @@ export default class Modal extends Component<IProps, IState> {
           <View className='content'>
             <ScrollView
               className='content-scroll'
+              style={{fontSize: this.props.contentTextSize, color: this.props.contentTextColor}}
               scrollY
               scrollWithAnimation
             >
-              <Text style={{fontSize: this.props.contentTextSize, color: this.props.contentTextColor}}>{this.props.content}</Text>
+              {this.props.children}
+              <Text>{this.props.content}</Text>
             </ScrollView>
           </View>
 
@@ -210,9 +230,9 @@ export default class Modal extends Component<IProps, IState> {
                       className={cancelBtnClass}
                       style={{backgroundColor: this.props.cancelBtnBgColor, color: this.props.cancelBtnTextColor}}
                       type='primary'
-                      onClick={this.cancel.bind(this)}
+                      onClick={this.onCancel.bind(this)}
                     >
-                     {this.props.cancelText}
+                      {this.props.cancelText}
                     </Button>
                   )
                 }
@@ -224,7 +244,7 @@ export default class Modal extends Component<IProps, IState> {
                       className={confirmBtnClass}
                       style={{backgroundColor: this.props.confirmBtnBgColor, color: this.props.confirmBtnTextColor}}
                       type='primary'
-                      onClick={this.confirm.bind(this)}
+                      onClick={this.onConfirm.bind(this)}
                     >
                       {this.props.confirmText}
                     </Button>

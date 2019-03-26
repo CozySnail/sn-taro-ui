@@ -24,13 +24,10 @@ const config = {
       ]
     }
   },
-  defineConstants: {
-  },
+  defineConstants: {},
   copy: {
-     patterns: [
-    ],
-    options: {
-    }
+    patterns: [],
+    options: {}
   },
   weapp: {
     module: {
@@ -41,7 +38,7 @@ const config = {
         url: {
           enable: true,
           config: {
-            limit: 1024000 // 设定转换尺寸上限
+            limit: 1024000000 // 设定转换尺寸上限
           }
         }
       }

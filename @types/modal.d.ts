@@ -23,6 +23,7 @@ import { ComponentClass } from 'react'
  * @param cancelText {string} 取消按钮文字, 默认 null 不显示取消按钮
  * @param cancelBtnTextColor {string}  取消按钮文字颜色, 默认 #acacac, 当 cancelText 不为空时有效
  * @param cancelBtnBgColor {string}  取消按钮背景颜色, 默认 #FFFFFF, 当 cancelText 不为空时有效
+ * @param closeBtn {boolean}  是否显示关闭按钮, 默认 false
  *
  * @example
  * <Modal
@@ -60,6 +61,9 @@ import { ComponentClass } from 'react'
  *     // 回调函数
  *     onConfirm={this.onConfirmModal}
  *     onCancel={this.onCancelModal}
+ *
+ *     // 是否显示关闭按钮
+ *     closeBtn
  *     />
  */
 export interface ModalProps {
@@ -93,6 +97,9 @@ export interface ModalProps {
   cancelText?: string,
   cancelBtnTextColor?: string,
   cancelBtnBgColor?: string,
+
+  // 是否显示关闭按钮
+  closeBtn?: boolean
 
   // 回调函数
   onConfirm?(): void,

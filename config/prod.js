@@ -15,7 +15,7 @@ module.exports = {
         url: {
           enable: true,
           config: {
-            limit: 10240 // 文件大小限制
+            limit: 1024000000 // 文件大小限制
           }
         }
       }
