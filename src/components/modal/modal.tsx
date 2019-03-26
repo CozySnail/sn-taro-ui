@@ -70,7 +70,10 @@ import closeIcon from '../../asset/images/close-icon.png';
  *
  *     // 是否显示关闭按钮
  *     closeBtn
- *     />
+ *     >
+ *        <Text>内容区域</Text>
+ *        <Input type='text' placeholder='将会获取焦点' focus />
+ *     </Modal>
  */
 
 // 设置组件参数属性

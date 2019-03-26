@@ -1,0 +1,30 @@
+.title-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #8e8c8c36;
+
+  .back-view {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 160px;
+  }
+
+  .right-view {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+  }
+
+  .title {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
+}

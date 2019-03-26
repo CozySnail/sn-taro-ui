@@ -1,8 +1,8 @@
 import Taro, {Component, Config} from '@tarojs/taro';
-import {Input, Text, View} from '@tarojs/components';
+import {View, Text} from '@tarojs/components';
 import './index.scss';
 
-import Modal from '../../components/modal/modal';
+import Container from '../../components/container/container';
 
 export default class Index extends Component {
 
@@ -17,9 +17,7 @@ export default class Index extends Component {
     navigationBarTitleText: '首页'
   };
 
-  state = {
-    modalShow: true,
-  };
+  state = {};
 
   componentWillMount() {
   }
@@ -36,64 +34,44 @@ export default class Index extends Component {
   componentDidHide() {
   }
 
-  onConfirmModal = () => {
-    this.setState({modalShow: false});
-  };
-
-
-  onCancelModal = () => {
-    this.setState({modalShow: false});
-  };
-
   render() {
-    return (
-      <View className='index'>
-        {
-          this.state.modalShow && (
-            <Modal
-              // 图标
-              icon='info-circle'
-              iconColor='#8e8c8c36'
-              iconSize={20}
-
-              // 标题
-              title='Modal 标题'
-              titleTextSize={20}
-              titleTextColor='#858585'
-              titleBgColor='#ffffff'
-
-              // 副标题
-              subTitle='Modal 副标题!'
-              subTitleTextSize={20}
-              subTitleTextColor='#5c89e4'
-
-              // 内容
-              content='Modal 内容区域内容区域内容区域内容区域内容区域'
-              contentTextSize={20}
-              contentTextColor='#acacac'
-
-              // 确认按钮
-              confirmText='确认'
-              confirmBtnTextColor='#5c89e4'
-              confirmBtnBgColor='#FFFFFF'
-
-              // 取消按钮
-              cancelText='取消'
-              cancelBtnTextColor='#acacac'
-              cancelBtnBgColor='#ffffff'
-
-              // 回调函数
-              onConfirm={this.onConfirmModal}
-              onCancel={this.onCancelModal}
-
-              closeBtn
-            >
-              <Text>内容区域</Text>
-              <Input type='text' placeholder='将会获取焦点' focus />
-            </Modal>
-          )
-        }
+    const footer = (
+      <View>
+        <Text>底部1</Text>
+        <Text>底部2</Text>
       </View>
+    );
+
+    return (
+      <Container
+        // 背景颜色
+        bgColor='#ffffff'
+
+        // 标题
+        titleHeight={100}
+        title='这里是标题'  // 标题内容
+        titleTextColor='#1E242A' // 文字颜色
+        titleTextSize={50}  // 文字大小
+
+        // 返回按钮
+        backText='返回' // 返回按钮文字
+        backTextColor='#5c89e4'  // 返回按钮文字颜色
+        backTextSize={30} // 返回按钮文字大小
+        backIconColor='#5c89e4' // 返回图标颜色
+
+        // 是否显示返回按钮
+        showBack
+
+        // 背景颜色
+        middleBgColor='#acacac'
+
+        footHeight={100}
+        footBgColor='#dedede'
+        footer={footer}
+      >
+        <Text>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</Text>
+        <Text>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</Text>
+      </Container>
     );
   }
 }

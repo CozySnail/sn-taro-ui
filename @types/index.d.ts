@@ -1,6 +1,10 @@
 // 组件
 export {default as Timer} from './timer';
 export {default as Modal} from './modal';
+export {default as Header} from './header';
+export {default as Middle} from './middle';
+export {default as Footer} from './footer';
+export {default as Container} from './container';
 
 // 工具类
 export {default as SnBaiDuTj} from './SnBaiDuTJ';

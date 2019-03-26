@@ -64,7 +64,10 @@ import { ComponentClass } from 'react'
  *
  *     // 是否显示关闭按钮
  *     closeBtn
- *     />
+ *     >
+ *        <Text>内容区域</Text>
+ *        <Input type='text' placeholder='将会获取焦点' focus />
+ *     </Modal>
  */
 export interface ModalProps {
   // 图标
