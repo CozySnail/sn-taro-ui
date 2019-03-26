@@ -68,20 +68,20 @@ declare function isTT(): boolean;
 declare function isWeChatPublic(): boolean;
 
 /**
- * @Description: 判断是否为微信小程序
- * @author snail
- * @date 2019-03-19
- * @return {boolean} 返回判断结果 是/否
- */
-declare function isWeChatMiniProgram(): boolean;
-
-/**
  * @Description: 判断是否为 PC 环境
  * @author snail
  * @date 2019-03-19
  * @return {boolean} 返回判断结果 是/否
  */
 declare function isPC(): boolean;
+
+/**
+ * @Description: 判断是否为微信环境
+ * @author snail
+ * @date 2019-03-19
+ * @return {boolean} 返回判断结果 是/否
+ */
+declare function isWeChat(): boolean;
 
 /**
  * @Description: 判断是否为开发环境
@@ -108,7 +108,7 @@ declare const SnCheckEnv: {
   isAlipay: typeof isAlipay;
   isTT: typeof isTT;
   isWeChatPublic: typeof isWeChatPublic;
-  isWeChatMiniProgram: typeof isWeChatMiniProgram;
+  isWeChat: typeof isWeChat;
   isPC: typeof isPC;
   isDev: typeof isDev;
   isPro: typeof isPro;

@@ -4,7 +4,6 @@
  */
 import Taro from '@tarojs/taro';
 import {StringUtil} from 'sn-js-utils';
-import wx from 'weixin-js-sdk';
 
 /**
  * @Description: 判断是否为 Web 环境
@@ -84,27 +83,15 @@ function isTT(): boolean {
  */
 function isWeChatPublic(): boolean {
   let result = false;
-  wx.miniProgram.getEnv(function (res) {
-    const isMiniProgram = res.miniprogram;
-    result = !isMiniProgram;
-  });
+  if (isPC()) {
+    let wx = require('weixin-js-sdk');
+    wx.miniProgram.getEnv(function (res) {
+      const isMiniProgram = res.miniprogram;
+      result = !isMiniProgram;
+    });
+  }
   console.log('isWeChatPublic : ', result);
   return result;
-}
-
-/**
- * @Description: 判断是否为微信小程序
- * @author snail
- * @date 2019-03-19
- * @return {boolean} 返回判断结果 是/否
- */
-function isWeChatMiniProgram(): boolean {
-  let isMiniProgram = false;
-  wx.miniProgram.getEnv(function (res) {
-    isMiniProgram = res.miniprogram;
-  });
-  console.log('isMiniProgram : ', isMiniProgram);
-  return isMiniProgram;
 }
 
 /**
@@ -121,11 +108,29 @@ function isPC(): boolean {
     xll: false
   };
   //检测平台
-  let p = navigator.platform;
-  system.win = p.indexOf("Win") === 0;
-  system.mac = p.indexOf("Mac") === 0;
-  system.xll = (p === "X11") || (p.indexOf("Linux") === 0);
-  return system.win || system.mac || system.xll;
+  if (navigator !== undefined) {
+    let p = navigator.platform;
+    system.win = p.indexOf("Win") === 0;
+    system.mac = p.indexOf("Mac") === 0;
+    system.xll = (p === "X11") || (p.indexOf("Linux") === 0);
+    return system.win || system.mac || system.xll;
+  } else {
+    return false;
+  }
+}
+
+/**
+ * @Description: 判断是否为微信环境
+ * @author snail
+ * @date 2019-03-19
+ * @return {boolean} 返回判断结果 是/否
+ */
+function isWeChat(): boolean {
+  if (isPC()) {
+    return isWeChatPublic();
+  } else {
+    return isWeApp();
+  }
 }
 
 /**
@@ -157,7 +162,7 @@ export default {
   isAlipay,
   isTT,
   isWeChatPublic,
-  isWeChatMiniProgram,
+  isWeChat,
   isPC,
   isDev,
   isPro,
