@@ -88,7 +88,7 @@ export default class Header extends Component<IProps, IState> {
   render() {
 
     return (
-      (SnCheckEnv.isWeApp() || SnCheckEnv.isWeChatMiniProgram() || SnCheckEnv.isWeChatPublic()) ? (<View />) : (
+      (SnCheckEnv.isWeChat()) ? (<View />) : (
         <View className='title-container' style={{height: Taro.pxTransform(this.props.height)}}>
           {
             this.props.showBack ? (
@@ -102,8 +102,7 @@ export default class Header extends Component<IProps, IState> {
               <View className='back-view' />
             )
           }
-          <Text className='title'
-                style={{color: this.props.titleTextColor, fontSize: Taro.pxTransform(this.props.titleTextSize)}}>
+          <Text className='title' style={{color: this.props.titleTextColor, fontSize: Taro.pxTransform(this.props.titleTextSize)}}>
             {this.props.title}
           </Text>
           <View className='right-view' />
