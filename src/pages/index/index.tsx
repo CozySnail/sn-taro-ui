@@ -67,7 +67,7 @@ export default class Index extends Component {
 
         footHeight={100}
         footBgColor='#dedede'
-        footer={footer}
+        // footer={footer}
       >
         <Text>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</Text>
         <Text>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</Text>
