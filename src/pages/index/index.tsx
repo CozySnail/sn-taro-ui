@@ -35,13 +35,6 @@ export default class Index extends Component {
   }
 
   render() {
-    const footer = (
-      <View>
-        <Text>底部1</Text>
-        <Text>底部2</Text>
-      </View>
-    );
-
     return (
       <Container
         // 背景颜色
@@ -67,7 +60,10 @@ export default class Index extends Component {
 
         footHeight={100}
         footBgColor='#dedede'
-        // footer={footer}
+        renderFooter={<View>
+          <Text>底部1</Text>
+          <Text>底部2</Text>
+        </View>}
       >
         <Text>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</Text>
         <Text>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</Text>
