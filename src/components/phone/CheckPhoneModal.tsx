@@ -4,14 +4,16 @@ import { AtInput } from 'taro-ui';
 import { StringUtil, DateUtil } from 'sn-js-utils';
 
 import Modal from '../modal/modal';
-import Request from '../../utils/network/SnRequest';
-import Urls from '../../utils/network/SnUrls';
-import SnStorage from '../../utils/SnStorage';
+import SnReqUtil from '../../utils/SnReqUtil';
 
 import './checkPhoneModal.scss';
 
 const paycenterurl = 'https://payuat.p6air.com/JZPay/servlet/validateCodeServlet';
-
+const partialParams = {
+    parentId: '1',
+    secret: 'U2FsdGVkX19Pef5Cbb0QsWOiQGXtf04Wioh1KTxpF0YbVjC2KjSBo+jsZ6pwJ/0aSF3x+DrkdF1XJKdzi7pOqEFznw3Q28L3W1qW+m4+yUHpv2qBtrgn2Ev5jCZ66ERDr2MQOdaxqhR4ZCenJjOXJgjx1xaLDZF+UynldOWULj3vtDhlQu2XXn2bOfv8lzlQsTjqZ5nnm4bhrXJqYvaZRQHyPyB9Y6MeSZIysXceU+IO5fT2rr/uPOdTyXwLKY3lZHIBrovSOI0zK6d9H96lQzoy1nB5pILKggBx2wbkTrq7GxvlzUVyEQNKTIdTT8DO',
+    userSource: 'other',
+};
 
 /**
  * 组件 Props 接口
@@ -82,22 +84,23 @@ interface IState {
     codeInputErrorTitle: string,
     codeInputError: boolean,
 
-    // 发送验证码按钮的禁用状态
-    sendBtnDisabled: boolean,
-    // 发送验证码按钮的文本
-    sendBtnText: string,
-
-    // 用于刷新图形验证码
-    timeStamp: number,
     // 1分钟倒计时的秒数
     time: number,
-    // 计时器
-    // timer: object,
+    // 发送验证码按钮的文本
+    sendBtnText: string,
+    // 发送验证码按钮的禁用状态
+    sendBtnDisabled: boolean,
 
     sessionId: string,
+
+    // 图形验证码的地址
+    imgCodeUrl: string,
 }
 
 
+/**
+ * 手机验证组件
+ */
 export default class CheckPhoneModal extends Component<IProps, IState> {
     static defaultProps = {
         title: '登录',
@@ -125,40 +128,38 @@ export default class CheckPhoneModal extends Component<IProps, IState> {
             sendBtnText: '发送验证码',
             sendBtnDisabled: false,
 
-            timeStamp: 0,
             sessionId: '',
+            imgCodeUrl: '',
         }
     }
 
     componentWillMount() {
-        this.refreshState();
+        this.refreshSessionId();
     }
 
-    // 获取新的 sessionId
-    getSessionId() {
-        Request.postForm(Urls.GET_SESSION_ID_API, null, 'payCenter', false, '', (res) => {
-            if (res.success) {
-                let sessionId = res.data.sessionId;
-                this.setState({ sessionId }, () => {
-                    SnStorage.save('payCenterSessionId', 'jeeplus.session.id=' + sessionId);
-                });
-            }
-        }, (err) => {
-            console.warn(`get session id fail: ${err}`);
-        });
-    }
 
     // 刷新图形验证码
-    changeGraphicsCode = () => {
+    refreshGraphicsCode = () => {
         this.setState({
-            timeStamp: DateUtil.timestamp(),
+            imgCodeUrl: paycenterurl + '?jeeplus.session.id=' + this.state.sessionId + '&' + DateUtil.timestamp()
         });
     };
-
-    refreshState() {
-        this.changeGraphicsCode();
-        this.getSessionId();
-    }
+    // 刷新 sessionId
+    refreshSessionId = () => {
+        SnReqUtil.getSessionId().then(sessionId => {
+            this.setState({
+                sessionId,
+                imgCodeUrl: paycenterurl + '?jeeplus.session.id=' + sessionId,
+            });
+        }).catch(err => {
+            console.error(`get session id fail: ${err}`);
+        });
+    };
+    // 刷新内部状态
+    refreshInternalState = () => {
+        this.refreshSessionId();
+        this.refreshGraphicsCode();
+    };
 
     // 取消按钮被点击
     onCancelModal() {
@@ -167,8 +168,6 @@ export default class CheckPhoneModal extends Component<IProps, IState> {
 
     // 确认按钮被点击
     onConfirmModal() {
-        console.log('onConfirmModal');
-
         const { phone, imgCode, code, sessionId } = this.state;
 
         if (StringUtil.isEmpty(phone)) {
@@ -196,28 +195,23 @@ export default class CheckPhoneModal extends Component<IProps, IState> {
             return;
         }
 
-        // todo: 调用登录接口
-        let checkPhoneCodeParams = {
+        // 调用登录接口
+        const checkMobileCodeParams = Object.assign({
             mobile: phone,
             verifyCode: code,
             sessionId: sessionId,
-            parentId: '1',
-            secret: 'U2FsdGVkX19Pef5Cbb0QsWOiQGXtf04Wioh1KTxpF0YbVjC2KjSBo+jsZ6pwJ/0aSF3x+DrkdF1XJKdzi7pOqEFznw3Q28L3W1qW+m4+yUHpv2qBtrgn2Ev5jCZ66ERDr2MQOdaxqhR4ZCenJjOXJgjx1xaLDZF+UynldOWULj3vtDhlQu2XXn2bOfv8lzlQsTjqZ5nnm4bhrXJqYvaZRQHyPyB9Y6MeSZIysXceU+IO5fT2rr/uPOdTyXwLKY3lZHIBrovSOI0zK6d9H96lQzoy1nB5pILKggBx2wbkTrq7GxvlzUVyEQNKTIdTT8DO',
-            userSource: 'other',
-        };
-        Request.postJson(Urls.CHECK_MOBILE_CODE_API, checkPhoneCodeParams, 'payCenter', true, false, '', (res) => {
-            console.log(res);
-            if (res.success) {
-                this.props.onConfirmCallback && this.props.onConfirmCallback();
-            } else {
-                Taro.showToast({
-                    title: res.msg,
-                    duration: 2000,
-                });
-            }
-        }, (err) => {
+        }, partialParams);
+
+        SnReqUtil.checkMobileCode(checkMobileCodeParams).then(() => {
+            this.props.onConfirmCallback && this.props.onConfirmCallback();
+        }).catch((err) => {
             console.warn(`check mobile code fail: ${err}`);
+            Taro.showToast({
+                title: '手机号验证失败',
+                duration: 2000,
+            });
         });
+
     }
 
     // 开启倒计时效果
@@ -312,53 +306,43 @@ export default class CheckPhoneModal extends Component<IProps, IState> {
             return;
         }
 
-        let checkPhoneCodeParams = {
+        // 验证图形验证码，并发送短信验证码
+        const getSmsVerifyCodeParams = Object.assign({
             mobile: phone,
             graphCode: imgCode,
             sessionId: sessionId,
-            parentId: '1',
-            secret: 'U2FsdGVkX19Pef5Cbb0QsWOiQGXtf04Wioh1KTxpF0YbVjC2KjSBo+jsZ6pwJ/0aSF3x+DrkdF1XJKdzi7pOqEFznw3Q28L3W1qW+m4+yUHpv2qBtrgn2Ev5jCZ66ERDr2MQOdaxqhR4ZCenJjOXJgjx1xaLDZF+UynldOWULj3vtDhlQu2XXn2bOfv8lzlQsTjqZ5nnm4bhrXJqYvaZRQHyPyB9Y6MeSZIysXceU+IO5fT2rr/uPOdTyXwLKY3lZHIBrovSOI0zK6d9H96lQzoy1nB5pILKggBx2wbkTrq7GxvlzUVyEQNKTIdTT8DO',
-            userSource: 'other',
-        };
+        }, partialParams);
 
-        Taro.showToast({
-            title: '成功',
-        });
-
-        // 验证图形验证码，并发送短信验证码
-        Request.postJson(Urls.GET_SMS_VERIFY_CODE, checkPhoneCodeParams, 'payCenter', true, false, '', (res) => {
-            console.log(res);
-
-            if (!res.success) {
-                // 验证失败
-                this.refreshState();
-                this.setState({
-                    imgCode: '',
-                    code: '',
-                });
-                Taro.showToast({
-                    title: res.msg,
-                    icon: 'fail',
-                    duration: 2000,
-                });
-            } else {
-                // 验证成功
-                this.setState({
-                    time: 60,
-                    sendBtnDisabled: true,
-                }, () => {
-                    this.setTimer();
-                    this.refreshState();
-                });
-                Taro.showToast({
-                    title: '发送成功',
-                    icon: 'success',
-                });
-            }
-        }, (err) => {
+        SnReqUtil.getSmsVerifyCode(getSmsVerifyCodeParams).then(() => {
+            // 验证成功
+            this.setState({
+                time: 60,
+                sendBtnDisabled: true,
+            }, () => {
+                // 开启1分钟倒计时
+                this.setTimer();
+                // 刷新内部状态，方便下次直接重试 (不需要手动点击图形验证码图片手动刷新)
+                this.refreshInternalState();
+            });
+            Taro.showToast({
+                title: '发送成功',
+                icon: 'success',
+            });
+        }).catch(err => {
+            // 验证失败
             console.warn(`get sms verify code fail: ${err}`);
-            this.refreshState();
+
+            this.refreshInternalState();
+            this.setState({
+                imgCode: '',
+                code: '',
+            });
+            Taro.showToast({
+                title: '获取验证码失败',
+                duration: 2000,
+            });
         });
+
     }
 
 
@@ -397,7 +381,7 @@ export default class CheckPhoneModal extends Component<IProps, IState> {
                         confirmType='完成'
                         onChange={this.handleChange.bind(this, 'imgCode')}
                     >
-                        <Image src={paycenterurl + '?jeeplus.session.id=' + this.state.sessionId + '&' + this.state.timeStamp} onClick={this.changeGraphicsCode} />
+                        <Image src={this.state.imgCodeUrl} onClick={this.refreshGraphicsCode.bind(this)} />
                     </AtInput>
                     <AtInput
                         name='code'

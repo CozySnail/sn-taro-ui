@@ -74,7 +74,10 @@ export default class PayTest extends Component<IProps, IState> {
                     }}
                 /> */}
                 {
-                    this.state.showModal && <CheckPhoneModal onCancelCallback={this.hideModal.bind(this)} />
+                    this.state.showModal && <CheckPhoneModal
+                        onCancelCallback={this.hideModal.bind(this)}
+                        onConfirmCallback={this.hideModal.bind(this)}
+                    />
                 }
 
                 <Button onClick={this.showModal.bind(this)}>验证手机号</Button>
