@@ -46,7 +46,7 @@ function get(url: string, data: any, platformType: string = 'bussiness', loading
  */
 function postForm(url: string, data: any, platformType: string = 'bussiness', loading: boolean = false, loadingText: string = '正在加载', success: Function, failure: Function): void {
   const contentType = 'application/x-www-form-urlencoded';
-  data = generateFormParam(data);
+  // data = generateFormParam(data);
   let header = setHeader(contentType, platformType);
   let options = setRequestOption(url, data, 'POST', header, loading, success, failure);
   baseRequest(options, loading, loadingText);
@@ -118,7 +118,7 @@ function request(options) {
 function setHeader(contentType: string = '', platformType: string = '') {
   let header = {
     'Accept': 'application/json',
-    'mode': "no-cors",
+    // 'mode': "no-cors",
   };
 
   if (StringUtil.isNotEmpty(contentType)) {

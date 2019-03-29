@@ -1,11 +1,18 @@
 import Taro, { Component, Config } from '@tarojs/taro';
-import { View } from '@tarojs/components';
+import { View, Button } from '@tarojs/components';
 
 import Pay from '../../components/pay/pay';
-import PayBase from '../../components/pay/paybase';
+import CheckPhoneModal from '../../components/phone/CheckPhoneModal';
 
 
-export default class PayTest extends Component {
+interface IProps {
+
+}
+interface IState {
+    showModal: boolean,
+}
+
+export default class PayTest extends Component<IProps, IState> {
 
     /**
      * 指定config的类型声明为: Taro.Config
@@ -18,8 +25,27 @@ export default class PayTest extends Component {
         navigationBarTitleText: 'Pay组件测试'
     };
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showModal: false,
+        };
+    }
+
     onAlipayClick() {
         console.log('alipay has clicked');
+    }
+
+    showModal() {
+        this.setState({
+            showModal: true,
+        });
+    }
+    hideModal() {
+        this.setState({
+            showModal: false,
+        });
     }
 
     render() {
@@ -47,6 +73,11 @@ export default class PayTest extends Component {
                         successUrl: '',
                     }}
                 /> */}
+                {
+                    this.state.showModal && <CheckPhoneModal onCancelCallback={this.hideModal.bind(this)} />
+                }
+
+                <Button onClick={this.showModal.bind(this)}>验证手机号</Button>
             </View>
         );
     }
