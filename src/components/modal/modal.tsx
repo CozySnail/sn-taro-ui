@@ -1,9 +1,10 @@
-import Taro, {Component} from '@tarojs/taro';
-import {Button, Image, ScrollView, Text, View} from '@tarojs/components';
-import {AtIcon} from 'taro-ui';
+import Taro, { Component } from '@tarojs/taro';
+import { Button, Image, ScrollView, Text, View } from '@tarojs/components';
+import { AtIcon } from 'taro-ui';
+
+import { StringUtil } from 'sn-js-utils';
 
 import './modal.scss';
-import {StringUtil} from 'sn-js-utils';
 import closeIcon from '../../asset/images/close-icon.png';
 
 /**
@@ -165,37 +166,45 @@ export default class Modal extends Component<IProps, IState> {
   };
 
   onDropClose = () => {
+    // 只有不显示右上角关闭按钮时，才启用该特性
     (!this.props.closeBtn && this.props.onCancel) && this.props.onCancel();
   };
 
   onCancel = () => {
     this.props.onCancel && this.props.onCancel();
   };
+  _hack(e: Event) {
+    /*此处主要是避免点击Modal本身也会触发onDropClose方法*/
+    e.stopPropagation();
+  }
 
   render() {
     let confirmBtnClass = (this.props.cancelText && StringUtil.isNotEmpty(this.props.cancelText)) ? 'confirm-btn' : 'no-cancel-confirm-btn';
     let cancelBtnClass = (this.props.confirmText && StringUtil.isNotEmpty(this.props.confirmText)) ? 'cancel-btn' : 'no-cancel-confirm-btn';
     return (
       <View className='common-modal' onClick={this.onDropClose}>
-        <View className='main'>
-          <Image
-            src={closeIcon}
-            className='closeBtn'
-            onClick={this.onCancel}
-          />
+        <View className='main' onClick={this._hack.bind(this)}>
+          {
+            this.props.closeBtn && <Image
+              src={closeIcon}
+              className='closeBtn'
+              onClick={this.onCancel}
+            />
+          }
+
           {
             (this.props.title && StringUtil.isNotEmpty(this.props.title)) && (
-              <View className='at-row' style={{backgroundColor: this.props.titleBgColor}}>
+              <View className='at-row' style={{ backgroundColor: this.props.titleBgColor }}>
                 <View className='title-row'>
                   <View className='title'
-                        style={{color: this.props.titleTextColor, fontSize: this.props.titleTextSize}}>
+                    style={{ color: this.props.titleTextColor, fontSize: this.props.titleTextSize }}>
                     {
                       (this.props.icon && StringUtil.isNotEmpty(this.props.icon)) ? (
                         <AtIcon prefixClass='fa' value={this.props.icon} color={this.props.iconColor}
-                                size={this.props.iconSize} className='at-icon' />
+                          size={this.props.iconSize} className='at-icon' />
                       ) : null
                     }
-                    <Text style={{marginLeft: Taro.pxTransform(10)}}>{this.props.title}</Text>
+                    <Text style={{ marginLeft: Taro.pxTransform(10) }}>{this.props.title}</Text>
                   </View>
                 </View>
               </View>
@@ -205,7 +214,7 @@ export default class Modal extends Component<IProps, IState> {
           {
             (this.props.subTitle && StringUtil.isNotEmpty(this.props.subTitle)) && (
               <View className='sub-title'
-                    style={{fontSize: this.props.subTitleTextSize, color: this.props.subTitleTextColor}}>
+                style={{ fontSize: this.props.subTitleTextSize, color: this.props.subTitleTextColor }}>
                 {this.props.subTitle}
               </View>
             )
@@ -215,7 +224,7 @@ export default class Modal extends Component<IProps, IState> {
           <View className='content'>
             <ScrollView
               className='content-scroll'
-              style={{fontSize: this.props.contentTextSize, color: this.props.contentTextColor}}
+              style={{ fontSize: this.props.contentTextSize, color: this.props.contentTextColor }}
               scrollY
               scrollWithAnimation
             >
@@ -232,7 +241,7 @@ export default class Modal extends Component<IProps, IState> {
                     <Button
                       plain
                       className={cancelBtnClass}
-                      style={{backgroundColor: this.props.cancelBtnBgColor, color: this.props.cancelBtnTextColor}}
+                      style={{ backgroundColor: this.props.cancelBtnBgColor, color: this.props.cancelBtnTextColor }}
                       type='primary'
                       onClick={this.onCancel.bind(this)}
                     >
@@ -246,7 +255,7 @@ export default class Modal extends Component<IProps, IState> {
                     <Button
                       plain
                       className={confirmBtnClass}
-                      style={{backgroundColor: this.props.confirmBtnBgColor, color: this.props.confirmBtnTextColor}}
+                      style={{ backgroundColor: this.props.confirmBtnBgColor, color: this.props.confirmBtnTextColor }}
                       type='primary'
                       onClick={this.onConfirm.bind(this)}
                     >
