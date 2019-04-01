@@ -1,0 +1,39 @@
+.pay-container-large {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    height: 84px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    .content {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        align-items: center;
+
+        .icon {
+            width: 52px;
+            height: 52px;
+            margin-right: 27px;
+        }
+        .title {
+            font-size: 30px;
+            color: #757F8A;
+        }
+    }
+    .arrow {
+        width: 10px;
+        height: 20px;
+    }
+}
+.pay-container-small {
+    display: inline-block;
+    vertical-align: bottom;
+}
+.taro-img {
+    vertical-align: bottom;
+}

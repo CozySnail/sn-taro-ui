@@ -47,20 +47,21 @@ function dealWithRequestSuccess(res, callback) {
       msg: '没有权限访问',
     };
   } else if (res.statusCode === REQUEST_STATUS.SUCCESS) {
-    let {code, data, message} = res;
+    console.log(res);
+    let {code, data, msg} = res.data;
     if (code === REQUEST_STATUS.REQUEST_SUCCESS_STATUS) { // 返回 code : 1000 认为是真正的成功
       result = {
         success: true,
         code: code,
         data: data,
-        msg: message,
+        msg: msg,
       };
     } else { // 否则, 认为失败
       result = {
         success: false,
         code: code,
         data: data,
-        msg: message,
+        msg: msg,
       };
     }
   }

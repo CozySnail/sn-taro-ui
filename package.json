@@ -22,7 +22,7 @@
 		"dev:rn": "npm run build:rn -- --watch",
 		"lint": "eslint ./src --fix",
 		"test": "TARO_BUILD_TYPE=ui taro build --ui && jest --coverage",
-    "buildUI": "TARO_BUILD_TYPE=ui taro build --ui",
+		"buildUI": "TARO_BUILD_TYPE=ui taro build --ui",
 		"release": "npm run test && git commit -am $npm_package_version && git push && git tag $npm_package_version && git push --tags"
 	},
 	"lint-staged": {

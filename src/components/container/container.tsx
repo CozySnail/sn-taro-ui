@@ -99,7 +99,7 @@ interface IProps {
   /* 底部配置 */
   footHeight?: any, // 底部高度
   footBgColor?: string,
-  footer: any
+  renderFooter: any
 }
 
 // 设置 state 属性
@@ -135,7 +135,7 @@ export default class Container extends Component<IProps, IState> {
     /* 底部配置 */
     footHeight: 100, // 底部高度
     footBgColor: '#ffffff',
-    footer: null,
+    renderFooter: null,
   };
 
   render() {
@@ -156,9 +156,9 @@ export default class Container extends Component<IProps, IState> {
           {this.props.children}
         </Middle>
         {
-          this.props.footer && (
+          this.props.renderFooter && (
             <Footer height={this.props.footHeight} bgColor={this.props.footBgColor}>
-              {this.props.footer}
+              {this.props.renderFooter}
             </Footer>
           )
         }
