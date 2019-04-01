@@ -1,0 +1,12 @@
+.check-view {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  .checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
