@@ -52,19 +52,6 @@ function postForm(url: string, data: any, platformType: string = 'bussiness', lo
   baseRequest(options, loading, loadingText);
 }
 
-// 将 json 对象参数转为 form data 数据
-function generateFormParam(data) {
-  let formData = new FormData();
-  let deviceInfo = Taro.getSystemInfoSync();
-  formData.append('platform', deviceInfo.platform);
-  for (let key in data) {
-    if (data.hasOwnProperty(key)) {
-      formData.append(key, data[key]);
-    }
-  }
-  return formData;
-}
-
 /**
  * @Description: POST JSON 请求
  * @author snail
